@@ -280,16 +280,18 @@ Audit.Core.Configuration.DataProvider = new EntityFrameworkDataProvider()
 Or use the [fluent API](https://github.com/thepirat000/Audit.NET#configuration-fluent-api) `UseEntityFramework` method:
 ```c#
 Audit.Core.Configuration.Setup()
-    .UseEntityFramework(ef => ef
-        .AuditTypeExplicitMapper(m => m
-            .Map<Order, Audit_Order>()
-            .Map<OrderItem, Audit_OrderItem>())
-        .AuditEntityAction<IAudit>((evt, entry, auditEntity) =>
-        {
-            auditEntity.AuditDate = DateTime.UtcNow;
-            auditEntity.UserName = evt.Environment.UserName;
-            auditEntity.AuditAction = entry.Action; // Insert, Update, Delete
-        }));
+	.UseEntityFramework(ef => ef
+		.AuditTypeExplicitMapper(m => m
+			.Map<Order, Audit_Order>()
+			.Map<OrderItem, Audit_OrderItem>()
+			.AuditEntityAction<IAudit>((evt, entry, auditEntity) =>
+			{
+				auditEntity.AuditDate = DateTime.UtcNow;
+				auditEntity.UserName = evt.Environment.UserName;
+				auditEntity.AuditAction = entry.Action; // Insert, Update, Delete
+			})
+		)
+	);
 ```
 
 ### EF Provider Options
