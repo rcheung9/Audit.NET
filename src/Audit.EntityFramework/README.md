@@ -175,7 +175,7 @@ public class MyDbContext : AuditDbContext
 }
 ```
 
-> Note that in the example above, since we want the event saving to be done on the `OnScopeSaving` method, we need to bypass the [Data Provider](https://github.com/thepirat000/Audit.NET#data-providers) and this can be done specifying an empty dynamic provider.
+> Note that in the example above, since we want the event saving to be done on the `OnScopeSaving` method, we need to bypass the [Data Provider](https://github.com/thepirat000/Audit.NET#data-providers) and this can be done specifying an empty dynamic provider with `Audit.Core.Configuration.DataProvider = new DynamicDataProvider();`.
 
 ## Output
 
